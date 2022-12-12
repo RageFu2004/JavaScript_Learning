@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="button1"> move me to 500px </button>
+    <button id="button2"> move me to 800px </button>
+    <box class="move"> I am moving</box>
+    <style>
+        .move{
+            position: absolute;
+            left:0px;
+            top:200px;
+            width: 80px;
+            height: 50px;
+            background-color: blue;
+        }
+    </style>
+    <script>
+        /*var move_button1 = document.getElementById("button1");
+        var move_button2 = document.getElementById("button2");
+        var clicker = document.querySelector(".move");*/
+
+        function move(object, target){
+            var step = (target - object.offsetLeft)/10;
+            if(step>0){
+                step = Math.ceil(step);
+            }else{
+                step = Math.floor(step);
+            }
+            object.style.left = object.offsetLeft + step + "px";
+            if (object.offsetLeft == target){
+                clearInterval(object.time);
+            }
+
+        }
+
+        function anim(obj, target){
+            if (obj.time){
+                clearInterval(obj.time);
+            }
+            obj.time = setInterval(function(){
+                move(obj, target)
+            }, 100)
+        }
+
+        /*move_button1.onclick = function(){
+
+            anim(clicker, 500);
+        }
+        move_button2.onclick = function(){
+            anim(clicker, 800);
+        }*/
+
+    </script>
+    
+</body>
+</html>

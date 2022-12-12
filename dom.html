@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="main">
+        leave a comment
+        <ul>
+            <textarea class="jj"> </textarea> 
+            <button class="submit" >submit</button>
+        </ul>
+        <p>text test</p>
+    </div>
+
+    <style>
+        .jj{
+            background-color: gold;
+            opacity: 0.3;
+        }
+        .submit{
+            background-color: blanchedalmond;
+        }
+    </style>
+
+    <script>
+        const button = document.querySelector(".submit")
+        var submittext = document.querySelector(".jj")
+        const father = document.getElementById("main")
+
+        function submit(obj){
+            var para = document.createElement("p");
+            para.innerHTML = obj.value;
+            father.appendChild(para);
+            obj.value = null
+            button.disabled = "True"
+
+        }
+
+        button.addEventListener("click", function(){
+            var time_left = 5
+            submit(submittext)
+            var timer2 = setInterval(function(){
+                button.innerHTML = "等"+ (time_left-1)+"秒";
+                time_left -= 1
+                if (time_left == 0){
+                    clearInterval(timer2);
+                    button.innerHTML = "submit"
+                }
+            }, 1000)
+
+            var timer = setTimeout(function(){
+                button.disabled = null
+            
+            }, 5000)
+
+        })
+
+    </script>
+
+    
+</body>
+</html>
